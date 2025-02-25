@@ -898,12 +898,142 @@ console.log("เลขคู่:", evenNumbers); // [2, 4]
 
 ### ผลการทดลอง
 ทดสอบปรับแต่ง CSS ในแต่ละส่วน แล้วเขียน สรุปผลการทดลองว่าได้ทดลองเปลี่ยนส่วนใด แล้วผลเป็นอย่างไร พร้อมแนบรูปประกอบการทดลอง
+1. การเปลี่ยนแปลงที่ทำ
+เปลี่ยนพื้นหลัง
 
+จาก background-color: #f5f5f5;
+เป็น background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+เพิ่ม background-attachment: fixed; เพื่อให้พื้นหลังไม่เลื่อนตาม
+ปรับแต่งฟอร์มให้เป็น Glassmorphism
+
+ใช้ background: rgba(255, 255, 255, 0.2); เพื่อให้มีเอฟเฟกต์โปร่งใส
+เพิ่ม backdrop-filter: blur(10px); เพื่อให้พื้นหลังเบลอ
+ปรับแต่งปุ่มให้เป็น Neumorphism
+
+เพิ่ม box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2), -4px -4px 10px rgba(255, 255, 255, 0.6);
+ทำให้ปุ่มดูนูนขึ้น
+2. ผลการทดลอง
+ พื้นหลังไล่สีทำงานได้ถูกต้อง
+ Glassmorphism ทำให้ฟอร์มดูโปร่งใสและสวยขึ้น
+ Neumorphism ทำให้ปุ่มดูมีมิติ
+ รองรับหน้าจอขนาดเล็กได้ดี (Responsive)
 ### บันทึกผลการทดลอง 3.2.2
 ```html
-[บันทึกโค้ด ที่นี่]
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จองห้องพัก | Unique Design</title>
+    <style>
+        /* พื้นหลังไล่สี */
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* กล่องฟอร์มแบบ Glassmorphism */
+        .form-container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        /* ปุ่มแบบ Neumorphism */
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            background: #ffffff;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2), -4px -4px 10px rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #f1f1f1;
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            .form-container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h1>จองห้องพัก</h1>
+        
+        <form id="bookingForm">
+            <label for="fullname">ชื่อ-นามสกุล:</label>
+            <input type="text" id="fullname" name="fullname" required>
+
+            <label for="email">อีเมล:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">เบอร์โทรศัพท์:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="checkin">วันที่เช็คอิน:</label>
+            <input type="date" id="checkin" name="checkin" required>
+
+            <label for="checkout">วันที่เช็คเอาท์:</label>
+            <input type="date" id="checkout" name="checkout" required>
+
+            <label for="roomtype">ประเภทห้องพัก:</label>
+            <select id="roomtype" name="roomtype" required>
+                <option value="">เลือกห้องพัก</option>
+                <option value="standard">ห้องมาตรฐาน</option>
+                <option value="deluxe">ห้องดีลักซ์</option>
+                <option value="suite">ห้องสวีท</option>
+            </select>
+
+            <button type="submit">จองห้องพัก</button>
+        </form>
+    </div>
+
+</body>
+</html>
+
 ```
 [รูปผลการทดลองที่ 3.2.2]
+![3 2](https://github.com/user-attachments/assets/c931e53e-4a9f-4c7c-b268-db75d92df863)
 
 
 ## ขั้นตอนที่ 3.2.3: การเพิ่มฟังก์ชันด้วย JavaScript
@@ -1008,9 +1138,199 @@ console.log("เลขคู่:", evenNumbers); // [2, 4]
 
 ### บันทึกผลการทดลอง 3.2.3
 ```html
-[บันทึกโค้ด ที่นี่]
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จองห้องพัก | Unique Design</title>
+    <style>
+        /* พื้นหลังไล่สี */
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* กล่องฟอร์มแบบ Glassmorphism */
+        .form-container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        /* ปุ่มแบบ Neumorphism */
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            background: #ffffff;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2), -4px -4px 10px rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #f1f1f1;
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            .form-container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h1>จองห้องพัก</h1>
+        
+        <form id="bookingForm">
+            <label for="fullname">ชื่อ-นามสกุล:</label>
+            <input type="text" id="fullname" name="fullname" required>
+
+            <label for="email">อีเมล:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">เบอร์โทรศัพท์:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="checkin">วันที่เช็คอิน:</label>
+            <input type="date" id="checkin" name="checkin" required>
+
+            <label for="checkout">วันที่เช็คเอาท์:</label>
+            <input type="date" id="checkout" name="checkout" required>
+
+            <label for="roomtype">ประเภทห้องพัก:</label>
+            <select id="roomtype" name="roomtype" required>
+                <option value="">เลือกห้องพัก</option>
+                <option value="standard">ห้องมาตรฐาน</option>
+                <option value="deluxe">ห้องดีลักซ์</option>
+                <option value="suite">ห้องสวีท</option>
+            </select>
+
+            <label for="guests">จำนวนผู้เข้าพัก:</label>
+            <input type="number" id="guests" name="guests" min="1" required>
+
+            <button type="submit">จองห้องพัก</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // รับค่าจากฟอร์ม
+            const checkin = new Date(document.getElementById('checkin').value);
+            const checkout = new Date(document.getElementById('checkout').value);
+            const today = new Date();
+            
+            // ตรวจสอบวันที่
+            if (checkin < today) {
+                alert('กรุณาเลือกวันเช็คอินที่ยังไม่ผ่านมา');
+                return;
+            }
+            
+            if (checkout <= checkin) {
+                alert('วันเช็คเอาท์ต้องมาหลังวันเช็คอิน');
+                return;
+            }
+            
+            // ตรวจสอบเบอร์โทรศัพท์
+            const phone = document.getElementById('phone').value;
+            const phoneRegex = /^[0-9]{10}$/;
+            if (!phoneRegex.test(phone)) {
+                alert('กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง (10 หลัก)');
+                return;
+            }
+            
+            // คำนวณจำนวนวันที่เข้าพัก
+            const days = Math.ceil((checkout - checkin) / (1000 * 60 * 60 * 24));
+
+            // ดึงค่าห้องและจำนวนผู้เข้าพัก
+            const roomtype = document.getElementById('roomtype');
+            const roomtypeText = roomtype.options[roomtype.selectedIndex].text;
+            const guests = document.getElementById('guests').value;
+
+            // สรุปข้อมูลการจอง
+            const summary = `
+                สรุปการจอง:
+                -----------------------------
+                🔹 ชื่อผู้จอง: ${document.getElementById('fullname').value}
+                🔹 ประเภทห้อง: ${roomtypeText}
+                🔹 วันที่เช็คอิน: ${checkin.toLocaleDateString('th-TH')}
+                🔹 วันที่เช็คเอาท์: ${checkout.toLocaleDateString('th-TH')}
+                🔹 จำนวนวันที่พัก: ${days} วัน
+                🔹 จำนวนผู้เข้าพัก: ${guests} ท่าน
+            `;
+            
+            if (confirm(summary + '\n\n✅ ยืนยันการจองห้องพัก?')) {
+                alert('🎉 จองห้องพักเรียบร้อยแล้ว!');
+                this.reset();
+            }
+        });
+
+        // จำกัดวันเช็คเอาท์ให้ไม่สามารถเลือกก่อนวันเช็คอิน
+        document.getElementById('checkin').addEventListener('change', function() {
+            document.getElementById('checkout').min = this.value;
+        });
+
+        // จำกัดจำนวนผู้เข้าพักตามประเภทห้อง
+        document.getElementById('roomtype').addEventListener('change', function() {
+            const guestsInput = document.getElementById('guests');
+            const maxGuests = {
+                "standard": 2,
+                "deluxe": 3,
+                "suite": 4
+            };
+
+            guestsInput.max = maxGuests[this.value] || 4;
+            if (guestsInput.value > guestsInput.max) {
+                guestsInput.value = guestsInput.max;
+                alert(`จำนวนผู้เข้าพักสูงสุดสำหรับ ${this.options[this.selectedIndex].text} คือ ${guestsInput.max} ท่าน`);
+            }
+        });
+    </script>
+</body>
+</html>
+
 ```
 [รูปผลการทดลองที่ 3.2.3]
+![3 3](https://github.com/user-attachments/assets/bfc51933-94ca-4e2d-a23a-75c026c8cd68)
 
 
 ## คำแนะนำเพิ่มเติม
