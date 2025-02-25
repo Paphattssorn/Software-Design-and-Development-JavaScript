@@ -76,9 +76,50 @@ JavaScript สามารถเพิ่มลงในเว็บเพจไ
    - มีปุ่มเมื่อคลิกแล้วจะแสดงข้อความที่กรอกในช่องข้อความ  (สามารถใช้ document.getElementById('id ของ textbox').value เพื่อดึงข้อมูลในช่อง)
 ### บันทึกผลการทดลอง 
 ```html
-[บันทึกโค้ด ที่นี่]
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>ทดลอง JavaScript</title>
+</head>
+<body>
+    <!-- Inline JavaScript -->
+    <button onclick="alert('ปภัสสร เอี่ยมสอาด')">ปุ่มที่ 1</button>
+
+    <!-- Internal JavaScript -->
+    <button id="btn2">ปุ่มที่ 2</button> <!-- แสดงวันที่ใน alert -->
+
+    <!-- External JavaScript -->
+    <button id="btn3">ปุ่มที่ 3</button> <!-- แสดงเวลาใน alert -->
+    <p id="timeDisplay"></p>
+
+    <!-- กล่องข้อความและปุ่มสำหรับแสดงผล -->
+    <input type="text" id="inputText" placeholder="พิมพ์ข้อความที่นี่">
+    <button id="btnShowText">แสดงข้อความ</button>
+    
+    
+        <!-- Internal JavaScript -->
+    <script>
+        document.getElementById('btn2').onclick = function() {
+            let today = new Date();
+            alert('วันที่ปัจจุบัน: ' + today.toLocaleDateString('th-TH'));
+        };
+
+        // ดึงค่าจาก textbox 
+        document.getElementById('btnShowText').onclick = function() {
+            let text = document.getElementById('inputText').value; // ดึงค่าจากช่องกรอก
+        };
+    </script>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
 ```
 [รูปผลการทดลองที่ 1]
+![1java](https://github.com/user-attachments/assets/b4889b0b-63d8-4ba4-905f-574845200651)
+![2java](https://github.com/user-attachments/assets/b223b572-9486-460d-b73c-ad55f04f267e)
+![3java](https://github.com/user-attachments/assets/7e022f74-474a-43b9-b1db-39ebcdc68f31)
   
 ## การทดลองที่ 2: พื้นฐาน JavaScript
 ### 2.1 การประกาศตัวแปรและชนิดข้อมูล
@@ -134,9 +175,31 @@ let person = {
 
 ### บันทึกผลการทดลอง 2.1
 ```html
-[บันทึกโค้ด ที่นี่]
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข้อมูลนักศึกษา</title>
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <h2>ข้อมูลนักศึกษา</h2>
+    <p><strong>รหัสนักศึกษา:</strong>67030311<span id="studentID"></span></p>
+    <p><strong>ชื่อ:</strong>ปภัสสร เอี่ยมสอาด <span id="studentName"></span></p>
+    <p><strong>สาขาวิชา:</strong>เทคโนโลยีคอมพิวเตอร์ <span id="major"></span></p>
+    <p><strong>เกรดเฉลี่ย:</strong>3.00 <span id="gpa"></span></p>
+
+    <h2>คะแนนสอบ</h2>
+    <p><strong>คะแนนสอบกลางภาค:</strong>20 <span id="midtermScore"></span></p>
+    <p><strong>คะแนนสอบปลายภาค:</strong>7 <span id="finalScore"></span></p>
+    <p><strong>คะแนนรวม:</strong>27 <span id="totalScore"></span></p>
+    <p><strong>คะแนนเฉลี่ย:</strong> <span id="averageScore"></span></p>
+</body>
+</html>
 ```
 [รูปผลการทดลองที่ 2.1]
+![2 1](https://github.com/user-attachments/assets/c7bb5b79-26bb-430a-aa6c-52ad5d7fca7c)
 
 
 ### 2.2 การดำเนินการทางคณิตศาสตร์
@@ -188,9 +251,33 @@ number /= 2;          // เท่ากับ number = number / 2
 
 ### บันทึกผลการทดลอง 2.2
 ```html
-[บันทึกโค้ด ที่นี่]
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การคำนวณคะแนนเฉลี่ย & VAT</title>
+    <script defer src="script.js"></script> 
+</head>
+<body>
+    <h2>คำนวณคะแนนเฉลี่ย</h2>
+    <label>คะแนนวิชา 1: <input type="number" id="subject1" value="85"></label><br>
+    <label>คะแนนวิชา 2: <input type="number" id="subject2" value="90"></label><br>
+    <label>คะแนนวิชา 3: <input type="number" id="subject3" value="80"></label><br>
+    <button onclick="calculateAverage()">คำนวณคะแนนเฉลี่ย</button>
+    <p id="averageResult"></p>
+
+    <h2>คำนวณราคาสินค้ารวม VAT 7%</h2>
+    <label>ชื่อสินค้า: <input type="text" id="productName" value="Ipad"></label><br>
+    <label>ราคาสินค้า: <input type="number" id="productPrice" value="31400"></label><br>
+    <button onclick="calculateVAT()">คำนวณราคารวม VAT</button>
+    <p id="vatResult"></p>
+</body>
+</html>
+
 ```
 [รูปผลการทดลองที่ 2.2]
+![2 2java](https://github.com/user-attachments/assets/6ce2403a-527c-445f-b562-dd9542888d36)
 
 ### 2.3 การควบคุมการทำงาน
 
@@ -321,9 +408,39 @@ for (let i = 1; i <= 5; i++) {
 
 ### บันทึกผลการทดลอง 2.3
 ```html
-[บันทึกโค้ด ที่นี่]
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การควบคุมการทำงาน</title>
+    <script defer src="script.js"></script> <!-- เชื่อมกับไฟล์ JavaScript -->
+</head>
+<body>
+    <h2>ตรวจสอบเลขคู่หรือเลขคี่</h2>
+    <label>ป้อนตัวเลข: <input type="number" id="number"></label>
+    <button onclick="checkEvenOdd()">ตรวจสอบ</button>
+    <p id="resultEvenOdd"></p>
+
+    <h2>ตารางสูตรคูณแม่ 2</h2>
+    <pre id="multiplicationTable2"></pre>
+
+    <h2>ตารางสูตรคูณแม่ 3 (ใช้ while loop)</h2>
+    <pre id="multiplicationTable3"></pre>
+
+    <h2>นับถอยหลังจาก 10 ถึง 1</h2>
+    <pre id="countdown"></pre>
+
+    <h2>ตรวจสอบช่วงวัยตามอายุ</h2>
+    <label>ป้อนอายุ: <input type="number" id="ageInput"></label>
+    <button onclick="checkAgeGroup()">ตรวจสอบช่วงวัย</button>
+    <p id="ageGroup"></p>
+</body>
+</html>
+
 ```
 [รูปผลการทดลองที่ 2.3]
+![2 3](https://github.com/user-attachments/assets/09aa9dc6-7eee-49a5-b4db-831959d1967b)
 
 ### 2.4 Functions และ Arrow Functions
 
@@ -435,9 +552,38 @@ process(function() {
 
 ### บันทึกผลการทดลอง 2.4.1
 ```html
-[บันทึกโค้ด ที่นี่]
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบทดสอบ Functions</title>
+    <script defer src="script.js"></script>
+</head>
+<body>
+
+    <h2>คำนวณค่า BMI</h2>
+    <label>น้ำหนัก (กก.): <input type="number" id="weight" value="50"></label>
+    <label>ส่วนสูง (ซม.): <input type="number" id="height" value="155"></label>
+    <button onclick="calculateBMI()">คำนวณ</button>
+    <p id="bmiResult"></p>
+
+    <h2>ข้อความทักทายตามอายุ</h2>
+    <label>ชื่อ: <input type="text" id="name" value="paphatsorn"></label>
+    <label>อายุ: <input type="number" id="age" value="20"></label>
+    <button onclick="greetUser()">ทักทาย</button>
+    <p id="greetingResult"></p>
+
+    <h2>ตรวจสอบรหัสผ่าน</h2>
+    <label>รหัสผ่าน: <input type="password" id="password"></label>
+    <button onclick="checkPassword()">ตรวจสอบ</button>
+    <p id="passwordResult"></p>
+
+</body>
+</html>
 ```
 [รูปผลการทดลองที่ 2.4.1]
+![2 4 1](https://github.com/user-attachments/assets/5de7ae88-6401-4293-b36b-d988f1a9abe2)
 
 
 
@@ -478,7 +624,35 @@ console.log("เลขคู่:", evenNumbers); // [2, 4]
 
 ### บันทึกผลการทดลอง 2.4.2
 ```html
-[บันทึกโค้ด ที่นี่]
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบทดสอบ Functions</title>
+    <script defer src="script.js"></script>
+</head>
+<body>
+
+    <h2>คำนวณค่า BMI</h2>
+    <label>น้ำหนัก (กก.): <input type="number" id="weight" value="50"></label>
+    <label>ส่วนสูง (ซม.): <input type="number" id="height" value="155"></label>
+    <button onclick="calculateBMI()">คำนวณ</button>
+    <p id="bmiResult"></p>
+
+    <h2>ข้อความทักทายตามอายุ</h2>
+    <label>ชื่อ: <input type="text" id="name" value="paphatsorn"></label>
+    <label>อายุ: <input type="number" id="age" value="20"></label>
+    <button onclick="greetUser()">ทักทาย</button>
+    <p id="greetingResult"></p>
+
+    <h2>ตรวจสอบรหัสผ่าน</h2>
+    <label>รหัสผ่าน: <input type="password" id="password"></label>
+    <button onclick="checkPassword()">ตรวจสอบ</button>
+    <p id="passwordResult"></p>
+
+</body>
+</html>
 ```
 [รูปผลการทดลองที่ 2.4.2]
 
@@ -548,9 +722,26 @@ console.log("เลขคู่:", evenNumbers); // [2, 4]
 
 ### บันทึกผลการทดลอง 3.1
 ```html
-[บันทึกโค้ด ที่นี่]
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คำนวณค่า BMI</title>
+    <script defer src="script.js"></script> 
+</head>
+<body>
+    <h2>คำนวณค่า BMI</h2>
+    <label>น้ำหนัก (กก.): <input type="number" id="weight"></label>
+    <label>ส่วนสูง (ซม.): <input type="number" id="height"></label>
+    <button onclick="calculateBMI()">คำนวณ</button>
+    <p id="bmiResult"></p>
+    <p id="bmiStatus"></p>
+</body>
+</html>
 ```
 [รูปผลการทดลองที่ 3.1]
+![3 1](https://github.com/user-attachments/assets/b0dce54b-a876-4bfb-b923-baf82a0ece55)
 
 ## การทดลองที่ 3.2 : การสร้างฟอร์มสำหรับจองห้องพัก
 การสร้างฟอร์มลงทะเบียนเพื่อรวบรวมข้อมูลที่จำเป็นสำหรับการจองห้องพัก
